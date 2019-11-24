@@ -31,24 +31,24 @@ namespace todolist.api.Controllers
 
         // GET: api/Task/5
         [HttpGet("{id}", Name = "Get")]
-        public TodoTask Get(int id)
+        public TodoTask Get(Guid id)
         {
             return tasks.Where(t => t.Id == id).First();
         }
 
         // POST: api/Task
         [HttpPost]
-        public IActionResult Post([FromBody] [Bind("name")]TodoTask newTask)
+        public IActionResult Post([FromBody] TodoTask newTask)
         {
             tasks.Add(newTask);
             _logger.LogInformation("Adding task {task}", JsonConvert.SerializeObject(newTask));
-            return NoContent();
+            return CreatedAtAction("Get", new { id = newTask.Id });
         }
 
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             tasks.RemoveAll(t => t.Id == id);
             return NoContent();
