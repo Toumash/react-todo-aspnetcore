@@ -1,0 +1,33 @@
+body {
+  background-color: #282c34;
+  color: #dddd;
+}
+
+.App {
+  text-align: center;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.App-header {
+  text-align: center;
+  font-size: xx-large;
+  color: white;
+}
+
+.App-list {
+  list-style-type: none;
+  text-align: start;
+}
+.App-list li {
+  margin-bottom: 0.5em;
+}
+.App-list button {
+  margin-right: 1em;
+}
+.App input {
+  color: white;
+}
+.App-ButtonDone {
+  color: greenyellow;
+}
