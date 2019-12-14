@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using todolist.api.Model;
 
 namespace todolist.api.Controllers
 {
@@ -15,32 +16,34 @@ namespace todolist.api.Controllers
     {
 
         private readonly ILogger<TaskController> _logger;
+        private readonly TaskContext _db;
 
-        public TaskController(ILogger<TaskController> logger)
+        public TaskController(ILogger<TaskController> logger, TaskContext db)
         {
             this._logger = logger;
+            this._db = db;
         }
 
-        public static List<TodoTask> tasks = new List<TodoTask>();
         // GET: api/Task
         [HttpGet]
         public List<TodoTask> Get()
         {
-            return tasks;
+            return _db.Tasks.ToList();
         }
 
         // GET: api/Task/5
         [HttpGet("{id}", Name = "Get")]
         public TodoTask Get(Guid id)
         {
-            return tasks.Where(t => t.Id == id).First();
+            return _db.Tasks.Where(t => t.Id == id).First();
         }
 
         // POST: api/Task
         [HttpPost]
         public IActionResult Post([FromBody] TodoTask newTask)
         {
-            tasks.Add(newTask);
+            _db.Tasks.Add(newTask);
+            _db.SaveChanges();
             _logger.LogInformation("Adding task {task}", JsonConvert.SerializeObject(newTask));
             return CreatedAtAction("Get", new { id = newTask.Id });
         }
@@ -50,7 +53,8 @@ namespace todolist.api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            tasks.RemoveAll(t => t.Id == id);
+            _db.Tasks.RemoveRange(_db.Tasks.Where(t => t.Id == id));
+            _db.SaveChanges();
             return NoContent();
         }
     }
