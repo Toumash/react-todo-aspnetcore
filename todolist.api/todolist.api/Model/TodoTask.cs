@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace todolist.api.Controllers
+namespace todolist.api.Model
 {
     public class TodoTask
     {

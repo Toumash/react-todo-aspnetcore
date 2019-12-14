@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using todolist.api.Model;
 
 namespace todolist.api.Controllers
 {
@@ -15,13 +16,16 @@ namespace todolist.api.Controllers
     {
 
         private readonly ILogger<TaskController> _logger;
+        private readonly TaskContext _db;
 
-        public TaskController(ILogger<TaskController> logger)
+        public TaskController(ILogger<TaskController> logger, TaskContext db)
         {
             this._logger = logger;
+            this._db = db;
         }
 
         public static List<TodoTask> tasks = new List<TodoTask>();
+
         // GET: api/Task
         [HttpGet]
         public List<TodoTask> Get()
