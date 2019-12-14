@@ -7,7 +7,7 @@ import Add from "@material-ui/icons/AddCircle";
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
 const uuidv1 = require("uuid/v1");
 
-const apiPath = "https://localhost:5001/api/task";
+const apiPath = "https://eee.zylowski.pl/api/task";
 
 class App extends React.Component {
   constructor(props) {
