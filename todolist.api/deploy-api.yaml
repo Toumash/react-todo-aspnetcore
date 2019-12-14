@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp-backend
+  labels:
+    app: back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: toumash-todo-back
+        image: toumash/todoapp-back
+        env:
+        - name: ConnectionStrings__TaskContext
+          value: "server=192.168.99.100;database=todoapp;user ID=root;password=my-secret-pw;port=3306;"
