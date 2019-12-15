@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: todoapp
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: eee.mzylowski.pl
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: todo-front
+          servicePort: 80
+      - path: /api
+        backend:
+          serviceName: todo-back
+          servicePort: 80

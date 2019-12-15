@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: todoapp-backend
   labels:
-    app: back
+    app: todo-back
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: back
+      app: todo-back
   template:
     metadata:
       labels:
-        app: back
+        app: todo-back
     spec:
       containers:
       - name: toumash-todo-back

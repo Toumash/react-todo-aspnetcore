@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todoapp-frontend
+  name: todo-front
   labels:
-    app: front
+    app: todo-front
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: front
+      app: todo-front
   template:
     metadata:
       labels:
-        app: front
+        app: todo-front
     spec:
       containers:
-      - name: toumash-todo-front
+      - name: todo-front
         image: toumash/todoapp-front
