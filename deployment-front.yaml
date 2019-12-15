@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
       - name: todo-front
-        image: toumash/todoapp-front
+        image: toumash/todoapp-front:latest
