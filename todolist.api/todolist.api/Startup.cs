@@ -59,6 +59,9 @@ namespace todolist.api
                 endpoints.MapControllers();
             });
 
+            var db = app.ApplicationServices.GetService<TaskContext>();
+            db.Database.Migrate();
+
         }
     }
 }
